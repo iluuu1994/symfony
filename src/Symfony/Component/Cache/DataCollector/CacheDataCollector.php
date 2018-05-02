@@ -122,14 +122,14 @@ class CacheDataCollector extends DataCollector implements LateDataCollectorInter
             );
             /** @var TraceableAdapterEvent $call */
             foreach ($calls as $call) {
-                $statistics[$name]['calls'] += 1;
+                ++$statistics[$name]['calls'];
                 $statistics[$name]['time'] += $call->end - $call->start;
                 if ('getItem' === $call->name) {
-                    $statistics[$name]['reads'] += 1;
+                    ++$statistics[$name]['reads'];
                     if ($call->hits) {
-                        $statistics[$name]['hits'] += 1;
+                        ++$statistics[$name]['hits'];
                     } else {
-                        $statistics[$name]['misses'] += 1;
+                        ++$statistics[$name]['misses'];
                     }
                 } elseif ('getItems' === $call->name) {
                     $count = $call->hits + $call->misses;
@@ -137,16 +137,16 @@ class CacheDataCollector extends DataCollector implements LateDataCollectorInter
                     $statistics[$name]['hits'] += $call->hits;
                     $statistics[$name]['misses'] += $count - $call->misses;
                 } elseif ('hasItem' === $call->name) {
-                    $statistics[$name]['reads'] += 1;
+                    ++$statistics[$name]['reads'];
                     if (false === $call->result) {
-                        $statistics[$name]['misses'] += 1;
+                        ++$statistics[$name]['misses'];
                     } else {
-                        $statistics[$name]['hits'] += 1;
+                        ++$statistics[$name]['hits'];
                     }
                 } elseif ('save' === $call->name) {
-                    $statistics[$name]['writes'] += 1;
+                    ++$statistics[$name]['writes'];
                 } elseif ('deleteItem' === $call->name) {
-                    $statistics[$name]['deletes'] += 1;
+                    ++$statistics[$name]['deletes'];
                 }
             }
             if ($statistics[$name]['reads']) {

@@ -36,14 +36,14 @@ class FooTestCase
     public function testLegacyFoo()
     {
         @trigger_error('silenced foo deprecation', E_USER_DEPRECATED);
-        trigger_error('unsilenced foo deprecation', E_USER_DEPRECATED);
-        trigger_error('unsilenced foo deprecation', E_USER_DEPRECATED);
+        @trigger_error('unsilenced foo deprecation', E_USER_DEPRECATED);
+        @trigger_error('unsilenced foo deprecation', E_USER_DEPRECATED);
     }
 
     public function testNonLegacyBar()
     {
         @trigger_error('silenced bar deprecation', E_USER_DEPRECATED);
-        trigger_error('unsilenced bar deprecation', E_USER_DEPRECATED);
+        @trigger_error('unsilenced bar deprecation', E_USER_DEPRECATED);
     }
 }
 

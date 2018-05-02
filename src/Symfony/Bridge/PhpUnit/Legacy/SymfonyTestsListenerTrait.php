@@ -107,7 +107,7 @@ class SymfonyTestsListenerTrait
         $this->testsWithWarnings = array();
 
         foreach ($suite->tests() as $test) {
-            if (!($test instanceof \PHPUnit_Framework_TestCase || $test instanceof TestCase)) {
+            if (!($test instanceof \PHPUnit\Framework\TestCase || $test instanceof TestCase)) {
                 continue;
             }
             if (null === $Test::getPreserveGlobalStateSettings(get_class($test), $test->getName(false))) {
@@ -160,7 +160,7 @@ class SymfonyTestsListenerTrait
         } elseif (2 === $this->state) {
             $skipped = array();
             foreach ($suite->tests() as $test) {
-                if (!($test instanceof \PHPUnit_Framework_TestCase || $test instanceof TestCase)
+                if (!($test instanceof \PHPUnit\Framework\TestCase || $test instanceof TestCase)
                     || isset($this->wasSkipped[$suiteName]['*'])
                     || isset($this->wasSkipped[$suiteName][$test->getName()])) {
                     $skipped[] = $test;
@@ -173,7 +173,7 @@ class SymfonyTestsListenerTrait
     public function addSkippedTest($test, \Exception $e, $time)
     {
         if (0 < $this->state) {
-            if ($test instanceof \PHPUnit_Framework_TestCase || $test instanceof TestCase) {
+            if ($test instanceof \PHPUnit\Framework\TestCase || $test instanceof TestCase) {
                 $class = get_class($test);
                 $method = $test->getName();
             } else {
@@ -187,7 +187,7 @@ class SymfonyTestsListenerTrait
 
     public function startTest($test)
     {
-        if (-2 < $this->state && ($test instanceof \PHPUnit_Framework_TestCase || $test instanceof TestCase)) {
+        if (-2 < $this->state && ($test instanceof \PHPUnit\Framework\TestCase || $test instanceof TestCase)) {
             if (null !== $test->getTestResultObject()) {
                 $this->reportUselessTests = $test->getTestResultObject()->isStrictAboutTestsThatDoNotTestAnything();
             }
@@ -237,7 +237,7 @@ class SymfonyTestsListenerTrait
 
     public function addWarning($test, $e, $time)
     {
-        if ($test instanceof \PHPUnit_Framework_TestCase || $test instanceof TestCase) {
+        if ($test instanceof \PHPUnit\Framework\TestCase || $test instanceof TestCase) {
             $this->testsWithWarnings[$test->getName()] = true;
         }
     }
@@ -274,7 +274,7 @@ class SymfonyTestsListenerTrait
             foreach ($deprecations ? unserialize($deprecations) : array() as $deprecation) {
                 $error = serialize(array('deprecation' => $deprecation[1], 'class' => $className, 'method' => $test->getName(false), 'triggering_file' => isset($deprecation[2]) ? $deprecation[2] : null));
                 if ($deprecation[0]) {
-                    trigger_error($error, E_USER_DEPRECATED);
+                    @trigger_error($error, E_USER_DEPRECATED);
                 } else {
                     @trigger_error($error, E_USER_DEPRECATED);
                 }
@@ -303,7 +303,7 @@ class SymfonyTestsListenerTrait
             $this->expectedDeprecations = $this->gatheredDeprecations = array();
             $this->previousErrorHandler = null;
         }
-        if (!$this->runsInSeparateProcess && -2 < $this->state && ($test instanceof \PHPUnit_Framework_TestCase || $test instanceof TestCase)) {
+        if (!$this->runsInSeparateProcess && -2 < $this->state && ($test instanceof \PHPUnit\Framework\TestCase || $test instanceof TestCase)) {
             if (in_array('time-sensitive', $groups, true)) {
                 ClockMock::withClockMock(false);
             }
@@ -312,7 +312,7 @@ class SymfonyTestsListenerTrait
             }
         }
 
-        if (($test instanceof \PHPUnit_Framework_TestCase || $test instanceof TestCase) && 0 === strpos($test->getName(), 'testLegacy') && !isset($this->testsWithWarnings[$test->getName()]) && !in_array('legacy', $groups, true)) {
+        if (($test instanceof \PHPUnit\Framework\TestCase || $test instanceof TestCase) && 0 === strpos($test->getName(), 'testLegacy') && !isset($this->testsWithWarnings[$test->getName()]) && !in_array('legacy', $groups, true)) {
             $result = $test->getTestResultObject();
 
             if (method_exists($result, 'addWarning')) {
@@ -320,7 +320,7 @@ class SymfonyTestsListenerTrait
             }
         }
 
-        if (($test instanceof \PHPUnit_Framework_TestCase || $test instanceof TestCase) && strpos($className, '\Legacy') && !isset($this->testsWithWarnings[$test->getName()]) && !in_array('legacy', $classGroups, true)) {
+        if (($test instanceof \PHPUnit\Framework\TestCase || $test instanceof TestCase) && strpos($className, '\Legacy') && !isset($this->testsWithWarnings[$test->getName()]) && !in_array('legacy', $classGroups, true)) {
             $result = $test->getTestResultObject();
 
             if (method_exists($result, 'addWarning')) {
