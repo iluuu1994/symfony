@@ -62,21 +62,21 @@ class IcuResFileDumper extends FileDumper
 
         $root = pack('V7',
             $resOffset + (2 << 28), // Resource Offset + Resource Type
-            6,                      // Index length
-            $keyTop,                        // Index keys top
-            $bundleTop,                     // Index resources top
-            $bundleTop,                     // Index bundle top
+            6, // Index length
+            $keyTop, // Index keys top
+            $bundleTop, // Index resources top
+            $bundleTop, // Index bundle top
             count($messages->all($domain)), // Index max table length
-            0                               // Index attributes
+            0 // Index attributes
         );
 
         $header = pack('vC2v4C12@32',
-            32,                     // Header size
-            0xDA, 0x27,             // Magic number 1 and 2
-            20, 0, 0, 2,            // Rest of the header, ..., Size of a char
+            32, // Header size
+            0xDA, 0x27, // Magic number 1 and 2
+            20, 0, 0, 2, // Rest of the header, ..., Size of a char
             0x52, 0x65, 0x73, 0x42, // Data format identifier
-            1, 2, 0, 0,             // Data version
-            1, 4, 0, 0              // Unicode version
+            1, 2, 0, 0, // Data version
+            1, 4, 0, 0 // Unicode version
         );
 
         return $header.$root.$data;

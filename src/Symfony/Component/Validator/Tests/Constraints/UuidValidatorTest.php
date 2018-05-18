@@ -169,17 +169,17 @@ class UuidValidatorTest extends ConstraintValidatorTestCase
     public function getValidNonStrictUuids()
     {
         return array(
-            array('216fff40-98d9-11e3-a5e2-0800200c9a66'),    // Version 1 UUID in lowercase
-            array('216FFF40-98D9-11E3-A5E2-0800200C9A66'),    // Version 1 UUID in UPPERCASE
-            array('456daefb-5aa6-41b5-8dbc-068b05a8b201'),    // Version 4 UUID in lowercase
-            array('456DAEFb-5AA6-41B5-8DBC-068b05a8B201'),    // Version 4 UUID in mixed case
+            array('216fff40-98d9-11e3-a5e2-0800200c9a66'), // Version 1 UUID in lowercase
+            array('216FFF40-98D9-11E3-A5E2-0800200C9A66'), // Version 1 UUID in UPPERCASE
+            array('456daefb-5aa6-41b5-8dbc-068b05a8b201'), // Version 4 UUID in lowercase
+            array('456DAEFb-5AA6-41B5-8DBC-068b05a8B201'), // Version 4 UUID in mixed case
 
             // Non-standard UUIDs allowed by some other systems
             array('216f-ff40-98d9-11e3-a5e2-0800-200c-9a66'), // Non-standard dash positions (every 4 chars)
-            array('216fff40-98d911e3-a5e20800-200c9a66'),     // Non-standard dash positions (every 8 chars)
-            array('216fff4098d911e3a5e20800200c9a66'),        // No dashes at all
-            array('{216fff40-98d9-11e3-a5e2-0800200c9a66}'),  // Wrapped with curly braces
-            array('[216fff40-98d9-11e3-a5e2-0800200c9a66]'),  // Wrapped with squared braces
+            array('216fff40-98d911e3-a5e20800-200c9a66'), // Non-standard dash positions (every 8 chars)
+            array('216fff4098d911e3a5e20800200c9a66'), // No dashes at all
+            array('{216fff40-98d9-11e3-a5e2-0800200c9a66}'), // Wrapped with curly braces
+            array('[216fff40-98d9-11e3-a5e2-0800200c9a66]'), // Wrapped with squared braces
         );
     }
 

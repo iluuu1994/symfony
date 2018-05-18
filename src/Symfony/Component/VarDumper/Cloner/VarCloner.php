@@ -26,24 +26,24 @@ class VarCloner extends AbstractCloner
      */
     protected function doClone($var)
     {
-        $len = 1;                       // Length of $queue
-        $pos = 0;                       // Number of cloned items past the minimum depth
-        $refsCounter = 0;               // Hard references counter
-        $queue = array(array($var));    // This breadth-first queue is the return value
-        $indexedArrays = array();       // Map of queue indexes that hold numerically indexed arrays
-        $hardRefs = array();            // Map of original zval hashes to stub objects
-        $objRefs = array();             // Map of original object handles to their stub object couterpart
-        $resRefs = array();             // Map of original resource handles to their stub object couterpart
-        $values = array();              // Map of stub objects' hashes to original values
+        $len = 1; // Length of $queue
+        $pos = 0; // Number of cloned items past the minimum depth
+        $refsCounter = 0; // Hard references counter
+        $queue = array(array($var)); // This breadth-first queue is the return value
+        $indexedArrays = array(); // Map of queue indexes that hold numerically indexed arrays
+        $hardRefs = array(); // Map of original zval hashes to stub objects
+        $objRefs = array(); // Map of original object handles to their stub object couterpart
+        $resRefs = array(); // Map of original resource handles to their stub object couterpart
+        $values = array(); // Map of stub objects' hashes to original values
         $maxItems = $this->maxItems;
         $maxString = $this->maxString;
         $minDepth = $this->minDepth;
-        $currentDepth = 0;              // Current tree depth
-        $currentDepthFinalIndex = 0;    // Final $queue index for current tree depth
+        $currentDepth = 0; // Current tree depth
+        $currentDepthFinalIndex = 0; // Final $queue index for current tree depth
         $minimumDepthReached = 0 === $minDepth; // Becomes true when minimum tree depth has been reached
-        $cookie = (object) array();     // Unique object used to detect hard references
-        $a = null;                      // Array cast for nested structures
-        $stub = null;                   // Stub capturing the main properties of an original item value
+        $cookie = (object) array(); // Unique object used to detect hard references
+        $a = null; // Array cast for nested structures
+        $stub = null; // Stub capturing the main properties of an original item value
                                         // or null if the original value is used directly
 
         if (!self::$hashMask) {
@@ -87,8 +87,8 @@ class VarCloner extends AbstractCloner
                 // $v is the original value or a stub object in case of hard references
                 $refs[$k] = $cookie;
                 if ($zvalIsRef = $vals[$k] === $cookie) {
-                    $vals[$k] = &$stub;         // Break hard references to make $queue completely
-                    unset($stub);               // independent from the original structure
+                    $vals[$k] = &$stub; // Break hard references to make $queue completely
+                    unset($stub); // independent from the original structure
                     if ($v instanceof Stub && isset($hardRefs[\spl_object_hash($v)])) {
                         $vals[$k] = $refs[$k] = $v;
                         if ($v->value instanceof Stub && (Stub::TYPE_OBJECT === $v->value->type || Stub::TYPE_RESOURCE === $v->value->type)) {

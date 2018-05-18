@@ -63,8 +63,8 @@ class ApcClassLoaderTest extends TestCase
     public function getLoadClassTests()
     {
         return array(
-           array('\\Apc\\Namespaced\\Foo', 'Apc\\Namespaced\\Foo',   '->loadClass() loads Apc\Namespaced\Foo class'),
-           array('Apc_Pearlike_Foo',    'Apc_Pearlike_Foo',      '->loadClass() loads Apc_Pearlike_Foo class'),
+           array('\\Apc\\Namespaced\\Foo', 'Apc\\Namespaced\\Foo', '->loadClass() loads Apc\Namespaced\Foo class'),
+           array('Apc_Pearlike_Foo', 'Apc_Pearlike_Foo', '->loadClass() loads Apc_Pearlike_Foo class'),
         );
     }
 
@@ -87,10 +87,10 @@ class ApcClassLoaderTest extends TestCase
     public function getLoadClassFromFallbackTests()
     {
         return array(
-           array('\\Apc\\Namespaced\\Baz',    'Apc\\Namespaced\\Baz',    '->loadClass() loads Apc\Namespaced\Baz class'),
-           array('Apc_Pearlike_Baz',       'Apc_Pearlike_Baz',       '->loadClass() loads Apc_Pearlike_Baz class'),
+           array('\\Apc\\Namespaced\\Baz', 'Apc\\Namespaced\\Baz', '->loadClass() loads Apc\Namespaced\Baz class'),
+           array('Apc_Pearlike_Baz', 'Apc_Pearlike_Baz', '->loadClass() loads Apc_Pearlike_Baz class'),
            array('\\Apc\\Namespaced\\FooBar', 'Apc\\Namespaced\\FooBar', '->loadClass() loads Apc\Namespaced\Baz class from fallback dir'),
-           array('Apc_Pearlike_FooBar',    'Apc_Pearlike_FooBar',    '->loadClass() loads Apc_Pearlike_Baz class from fallback dir'),
+           array('Apc_Pearlike_FooBar', 'Apc_Pearlike_FooBar', '->loadClass() loads Apc_Pearlike_Baz class from fallback dir'),
        );
     }
 

@@ -174,14 +174,14 @@ class DoctrineExtensionTest extends TestCase
     public function providerBasicDrivers()
     {
         return array(
-            array('doctrine.orm.cache.apc.class',       array('type' => 'apc')),
-            array('doctrine.orm.cache.apcu.class',      array('type' => 'apcu')),
-            array('doctrine.orm.cache.array.class',     array('type' => 'array')),
-            array('doctrine.orm.cache.xcache.class',    array('type' => 'xcache')),
-            array('doctrine.orm.cache.wincache.class',  array('type' => 'wincache')),
-            array('doctrine.orm.cache.zenddata.class',  array('type' => 'zenddata')),
-            array('doctrine.orm.cache.redis.class',     array('type' => 'redis'),     array('setRedis')),
-            array('doctrine.orm.cache.memcache.class',  array('type' => 'memcache'),  array('setMemcache')),
+            array('doctrine.orm.cache.apc.class', array('type' => 'apc')),
+            array('doctrine.orm.cache.apcu.class', array('type' => 'apcu')),
+            array('doctrine.orm.cache.array.class', array('type' => 'array')),
+            array('doctrine.orm.cache.xcache.class', array('type' => 'xcache')),
+            array('doctrine.orm.cache.wincache.class', array('type' => 'wincache')),
+            array('doctrine.orm.cache.zenddata.class', array('type' => 'zenddata')),
+            array('doctrine.orm.cache.redis.class', array('type' => 'redis'), array('setRedis')),
+            array('doctrine.orm.cache.memcache.class', array('type' => 'memcache'), array('setMemcache')),
             array('doctrine.orm.cache.memcached.class', array('type' => 'memcached'), array('setMemcached')),
         );
     }

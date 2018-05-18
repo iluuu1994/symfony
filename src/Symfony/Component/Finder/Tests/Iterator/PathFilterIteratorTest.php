@@ -65,18 +65,18 @@ class PathFilterIteratorTest extends IteratorTestCase
         ));
 
         return array(
-            array($inner, array('/^A/'),       array(), array('abc.dat', 'ab.dat', 'a.dat')),
-            array($inner, array('/^A\/B/'),    array(), array('abc.dat', 'ab.dat')),
+            array($inner, array('/^A/'), array(), array('abc.dat', 'ab.dat', 'a.dat')),
+            array($inner, array('/^A\/B/'), array(), array('abc.dat', 'ab.dat')),
             array($inner, array('/^A\/B\/C/'), array(), array('abc.dat')),
-            array($inner, array('/A\/B\/C/'),  array(), array('abc.dat', 'abc.dat.copy')),
+            array($inner, array('/A\/B\/C/'), array(), array('abc.dat', 'abc.dat.copy')),
 
-            array($inner, array('A'),      array(), array('abc.dat', 'ab.dat', 'a.dat', 'abc.dat.copy', 'ab.dat.copy', 'a.dat.copy')),
-            array($inner, array('A/B'),    array(), array('abc.dat', 'ab.dat', 'abc.dat.copy', 'ab.dat.copy')),
-            array($inner, array('A/B/C'),  array(), array('abc.dat', 'abc.dat.copy')),
+            array($inner, array('A'), array(), array('abc.dat', 'ab.dat', 'a.dat', 'abc.dat.copy', 'ab.dat.copy', 'a.dat.copy')),
+            array($inner, array('A/B'), array(), array('abc.dat', 'ab.dat', 'abc.dat.copy', 'ab.dat.copy')),
+            array($inner, array('A/B/C'), array(), array('abc.dat', 'abc.dat.copy')),
 
-            array($inner, array('copy/A'),      array(), array('abc.dat.copy', 'ab.dat.copy', 'a.dat.copy')),
-            array($inner, array('copy/A/B'),    array(), array('abc.dat.copy', 'ab.dat.copy')),
-            array($inner, array('copy/A/B/C'),  array(), array('abc.dat.copy')),
+            array($inner, array('copy/A'), array(), array('abc.dat.copy', 'ab.dat.copy', 'a.dat.copy')),
+            array($inner, array('copy/A/B'), array(), array('abc.dat.copy', 'ab.dat.copy')),
+            array($inner, array('copy/A/B/C'), array(), array('abc.dat.copy')),
         );
     }
 }

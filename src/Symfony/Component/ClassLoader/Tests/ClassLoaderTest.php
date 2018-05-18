@@ -56,8 +56,8 @@ class ClassLoaderTest extends TestCase
     public function getLoadClassTests()
     {
         return array(
-            array('\\Namespaced2\\Foo', 'Namespaced2\\Foo',   '->loadClass() loads Namespaced2\Foo class'),
-            array('\\Pearlike2_Foo',    'Pearlike2_Foo',      '->loadClass() loads Pearlike2_Foo class'),
+            array('\\Namespaced2\\Foo', 'Namespaced2\\Foo', '->loadClass() loads Namespaced2\Foo class'),
+            array('\\Pearlike2_Foo', 'Pearlike2_Foo', '->loadClass() loads Pearlike2_Foo class'),
         );
     }
 
@@ -147,10 +147,10 @@ class ClassLoaderTest extends TestCase
     public function getLoadClassFromFallbackTests()
     {
         return array(
-            array('\\Namespaced2\\Baz',    'Namespaced2\\Baz',    '->loadClass() loads Namespaced2\Baz class'),
-            array('\\Pearlike2_Baz',       'Pearlike2_Baz',       '->loadClass() loads Pearlike2_Baz class'),
+            array('\\Namespaced2\\Baz', 'Namespaced2\\Baz', '->loadClass() loads Namespaced2\Baz class'),
+            array('\\Pearlike2_Baz', 'Pearlike2_Baz', '->loadClass() loads Pearlike2_Baz class'),
             array('\\Namespaced2\\FooBar', 'Namespaced2\\FooBar', '->loadClass() loads Namespaced2\Baz class from fallback dir'),
-            array('\\Pearlike2_FooBar',    'Pearlike2_FooBar',    '->loadClass() loads Pearlike2_Baz class from fallback dir'),
+            array('\\Pearlike2_FooBar', 'Pearlike2_FooBar', '->loadClass() loads Pearlike2_Baz class from fallback dir'),
         );
     }
 

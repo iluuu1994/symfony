@@ -117,9 +117,9 @@ class WebProfilerExtensionTest extends TestCase
     {
         return array(
             array(false, false, false, false),
-            array(true,  false, true,  true),
-            array(false, true,  true,  false),
-            array(true,  true,  true,  true),
+            array(true, false, true, true),
+            array(false, true, true, false),
+            array(true, true, true, true),
         );
     }
 

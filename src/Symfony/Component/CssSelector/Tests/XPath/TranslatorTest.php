@@ -154,7 +154,7 @@ class TranslatorTest extends TestCase
     {
         return array(
             array('div', array('outer-div', 'li-div', 'foobar-div')),
-            array('DIV', array('outer-div', 'li-div', 'foobar-div')),  // case-insensitive in HTML
+            array('DIV', array('outer-div', 'li-div', 'foobar-div')), // case-insensitive in HTML
             array('div div', array('li-div')),
             array('div, div div', array('outer-div', 'li-div', 'foobar-div')),
             array('a[name]', array('name-anchor')),
@@ -231,9 +231,9 @@ class TranslatorTest extends TestCase
             array('* :root', array()),
             array('*:contains("link")', array('html', 'outer-div', 'tag-anchor', 'nofollow-anchor')),
             array(':CONtains("link")', array('html', 'outer-div', 'tag-anchor', 'nofollow-anchor')),
-            array('*:contains("LInk")', array()),  // case sensitive
+            array('*:contains("LInk")', array()), // case sensitive
             array('*:contains("e")', array('html', 'nil', 'outer-div', 'first-ol', 'first-li', 'paragraph', 'p-em')),
-            array('*:contains("E")', array()),  // case-sensitive
+            array('*:contains("E")', array()), // case-sensitive
             array('.a', array('first-ol')),
             array('.b', array('first-ol')),
             array('*.a', array('first-ol')),

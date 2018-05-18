@@ -43,7 +43,7 @@ abstract class AbstractCollatorTest extends TestCase
             array(
                 array('c', 'b', 'a'),
                 Collator::SORT_REGULAR,
-                array(2 => 'a', 1 => 'b',  0 => 'c'),
+                array(2 => 'a', 1 => 'b', 0 => 'c'),
             ),
             array(
                 array('b', 'c', 'a'),

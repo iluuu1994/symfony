@@ -36,15 +36,15 @@ class NotFoundActivationStrategyTest extends TestCase
     public function isActivatedProvider()
     {
         return array(
-            array('/test',      array('level' => Logger::DEBUG), false),
-            array('/foo',       array('level' => Logger::DEBUG, 'context' => $this->getContextException(404)), false),
-            array('/baz/bar',   array('level' => Logger::ERROR, 'context' => $this->getContextException(404)), false),
-            array('/foo',       array('level' => Logger::ERROR, 'context' => $this->getContextException(404)), false),
-            array('/foo',       array('level' => Logger::ERROR, 'context' => $this->getContextException(500)), true),
+            array('/test', array('level' => Logger::DEBUG), false),
+            array('/foo', array('level' => Logger::DEBUG, 'context' => $this->getContextException(404)), false),
+            array('/baz/bar', array('level' => Logger::ERROR, 'context' => $this->getContextException(404)), false),
+            array('/foo', array('level' => Logger::ERROR, 'context' => $this->getContextException(404)), false),
+            array('/foo', array('level' => Logger::ERROR, 'context' => $this->getContextException(500)), true),
 
-            array('/test',      array('level' => Logger::ERROR), true),
-            array('/baz',       array('level' => Logger::ERROR, 'context' => $this->getContextException(404)), true),
-            array('/baz',       array('level' => Logger::ERROR, 'context' => $this->getContextException(500)), true),
+            array('/test', array('level' => Logger::ERROR), true),
+            array('/baz', array('level' => Logger::ERROR, 'context' => $this->getContextException(404)), true),
+            array('/baz', array('level' => Logger::ERROR, 'context' => $this->getContextException(500)), true),
         );
     }
 

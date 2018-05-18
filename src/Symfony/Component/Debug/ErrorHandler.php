@@ -403,7 +403,7 @@ class ErrorHandler
         }
 
         if (isset($context['GLOBALS']) && $scope) {
-            $e = $context;                  // Whatever the signature of the method,
+            $e = $context; // Whatever the signature of the method,
             unset($e['GLOBALS'], $context); // $context is always a reference in 5.3
             $context = $e;
         }
