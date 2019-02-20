@@ -115,6 +115,49 @@ class FormThemeTokenParserTest extends TestCase
                     true
                 ),
             ],
+            [
+                '{% form_theme form with ["tpl1", "tpl2"] not ["tpl3", "tpl4"] %}',
+                new FormThemeNode(
+                    new NameExpression('form', 1),
+                    new ArrayExpression([
+                        new ConstantExpression(0, 1),
+                        new ConstantExpression('tpl1', 1),
+                        new ConstantExpression(1, 1),
+                        new ConstantExpression('tpl2', 1),
+                    ], 1),
+                    1,
+                    'form_theme',
+                    false,
+                    new ArrayExpression([
+                        new ConstantExpression(0, 1),
+                        new ConstantExpression('tpl3', 1),
+                        new ConstantExpression(1, 1),
+                        new ConstantExpression('tpl4', 1),
+                    ], 1)
+                ),
+            ],
+        ];
+    }
+
+    /**
+     * @expectedException \Twig\Error\SyntaxError
+     * @dataProvider getTestsForInvalidFormTheme
+     */
+    public function testInvalidFormTheme(string $source)
+    {
+        $env = new Environment($this->getMockBuilder('Twig\Loader\LoaderInterface')->getMock(), ['cache' => false, 'autoescape' => false, 'optimizations' => 0]);
+        $env->addTokenParser(new FormThemeTokenParser());
+        $stream = $env->tokenize(new Source($source, ''));
+        $parser = new Parser($env);
+        $parser->parse($stream);
+    }
+
+    public function getTestsForInvalidFormTheme()
+    {
+        return [
+            [
+                '{% form_theme form with ["tpl1", "tpl2"] not ["tpl3", "tpl4"] only %}',
+            ],
         ];
     }
 }

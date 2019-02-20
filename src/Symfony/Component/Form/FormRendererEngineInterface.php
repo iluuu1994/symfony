@@ -26,8 +26,10 @@ interface FormRendererEngineInterface
      *                                   is open to the implementation.
      * @param bool     $useDefaultThemes If true, will use default themes specified
      *                                   in the engine
+     * @param mixed    $notThemes        These themes are removed from the default
+     *                                   themes.
      */
-    public function setTheme(FormView $view, $themes, $useDefaultThemes = true);
+    public function setTheme(FormView $view, $themes, $useDefaultThemes = true, $notThemes = null);
 
     /**
      * Returns the resource for a block name.

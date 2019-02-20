@@ -13,6 +13,7 @@ namespace Symfony\Bridge\Twig\Node;
 
 use Symfony\Component\Form\FormRenderer;
 use Twig\Compiler;
+use Twig\Node\Expression\ConstantExpression;
 use Twig\Node\Node;
 
 /**
@@ -20,9 +21,22 @@ use Twig\Node\Node;
  */
 class FormThemeNode extends Node
 {
-    public function __construct(Node $form, Node $resources, int $lineno, string $tag = null, bool $only = false)
-    {
-        parent::__construct(['form' => $form, 'resources' => $resources], ['only' => $only], $lineno, $tag);
+    public function __construct(
+        Node $form,
+        Node $resources,
+        int $lineno,
+        string $tag = null,
+        bool $only = false,
+        ?Node $notResources = null
+    ) {
+        $notResources = $notResources ?? new ConstantExpression(null, 0);
+
+        parent::__construct(
+            ['form' => $form, 'resources' => $resources, 'notResources' => $notResources],
+            ['only' => $only],
+            $lineno,
+            $tag
+        );
     }
 
     public function compile(Compiler $compiler)
@@ -37,6 +51,8 @@ class FormThemeNode extends Node
             ->subcompile($this->getNode('resources'))
             ->raw(', ')
             ->raw(false === $this->getAttribute('only') ? 'true' : 'false')
+            ->raw(', ')
+            ->subcompile($this->getNode('notResources'))
             ->raw(");\n");
     }
 }

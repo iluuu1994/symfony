@@ -12,6 +12,7 @@
 namespace Symfony\Bridge\Twig\TokenParser;
 
 use Symfony\Bridge\Twig\Node\FormThemeNode;
+use Twig\Error\SyntaxError;
 use Twig\Node\Expression\ArrayExpression;
 use Twig\Node\Node;
 use Twig\Token;
@@ -35,14 +36,28 @@ class FormThemeTokenParser extends AbstractTokenParser
         $stream = $this->parser->getStream();
 
         $form = $this->parser->getExpressionParser()->parseExpression();
+        $notResources = null;
         $only = false;
 
         if ($this->parser->getStream()->test(Token::NAME_TYPE, 'with')) {
             $this->parser->getStream()->next();
             $resources = $this->parser->getExpressionParser()->parseExpression();
 
+            if ($this->parser->getStream()->test(Token::OPERATOR_TYPE, 'not')) {
+                $this->parser->getStream()->next();
+                $notResources = $this->parser->getExpressionParser()->parseExpression();
+            }
+
             if ($this->parser->getStream()->nextIf(Token::NAME_TYPE, 'only')) {
                 $only = true;
+            }
+
+            if ($notResources !== null && $only) {
+                throw new SyntaxError(
+                    sprintf('Cannot use "not" and "only" simultaneously in "%s".', $this->getTag()),
+                    $stream->getCurrent()->getLine(),
+                    $stream->getSourceContext()
+                );
             }
         } else {
             $resources = new ArrayExpression([], $stream->getCurrent()->getLine());
@@ -53,7 +68,7 @@ class FormThemeTokenParser extends AbstractTokenParser
 
         $stream->expect(Token::BLOCK_END_TYPE);
 
-        return new FormThemeNode($form, $resources, $lineno, $this->getTag(), $only);
+        return new FormThemeNode($form, $resources, $lineno, $this->getTag(), $only, $notResources);
     }
 
     /**

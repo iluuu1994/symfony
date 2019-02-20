@@ -70,8 +70,15 @@ class TemplatingRendererEngine extends AbstractRendererEngine
         // Check the default themes once we reach the root form without success
         if (!$view->parent) {
             if (!isset($this->useDefaultThemes[$cacheKey]) || $this->useDefaultThemes[$cacheKey]) {
+                $notThemes = $this->notThemes[$cacheKey] ?? [];
+
                 for ($i = \count($this->defaultThemes) - 1; $i >= 0; --$i) {
-                    if ($this->loadResourceFromTheme($cacheKey, $blockName, $this->defaultThemes[$i])) {
+                    $defaultTheme = $this->defaultThemes[$i];
+                    if (in_array($defaultTheme, $notThemes, true)) {
+                        continue;
+                    }
+
+                    if ($this->loadResourceFromTheme($cacheKey, $blockName, $defaultTheme)) {
                         return true;
                     }
                 }
